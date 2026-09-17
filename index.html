@@ -17,6 +17,13 @@
     --green:#22c55e;
     --border:#2a2c52;
     --radius:16px;
+    /* --- ৬টা জোন কালার --- */
+    --zone-violet:#8b5cf6;
+    --zone-green:#22c55e;
+    --zone-blue:#38bdf8;
+    --zone-orange:#f59e0b;
+    --zone-pink:#f472b6;
+    --zone-teal:#2dd4bf;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{
@@ -33,7 +40,15 @@
   header{
     text-align:center;
     padding:40px 18px 30px;
-    background:radial-gradient(circle at top, rgba(91,61,245,0.35), transparent 60%);
+    background:
+      linear-gradient(rgba(10,11,25,0.6), rgba(10,11,25,0.6)),
+      linear-gradient(120deg,
+        var(--zone-blue)   0%,  var(--zone-blue)   24%,
+        var(--zone-green)  24%, var(--zone-green)  48%,
+        var(--zone-violet) 48%, var(--zone-violet) 74%,
+        var(--zone-pink)   74%, var(--zone-pink)   100%
+      );
+    border-bottom:1px solid color-mix(in srgb, var(--zone-violet) 30%, transparent);
   }
   .logo-wrap{display:flex; justify-content:center; margin-bottom:14px;}
   .tagline{color:var(--text-dim); font-size:14px; margin-top:6px;}
@@ -46,14 +61,29 @@
     background:var(--card-light); padding:6px 12px; border-radius:20px;
     border:1px solid var(--border);
   }
+  .meta-row span.badge-orange{
+    background:rgba(255,138,61,0.16); border-color:rgba(255,138,61,0.4);
+    color:var(--accent); font-weight:700;
+  }
+  .meta-row span.badge-green{
+    background:rgba(34,197,94,0.16); border-color:rgba(34,197,94,0.4);
+    color:var(--green); font-weight:700;
+  }
 
   .instructor-card{
     background:var(--card);
     border:1px solid var(--border);
+    border-left:4px solid var(--zone-green);
     border-radius:var(--radius);
     padding:20px;
     margin:24px 0;
     display:flex; align-items:center; gap:16px;
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .instructor-card:hover{
+    transform:translateY(-3px);
+    border-color:var(--zone-green);
+    box-shadow:0 12px 28px -12px color-mix(in srgb, var(--zone-green) 55%, transparent);
   }
   .instructor-avatar{
     width:64px; height:64px; border-radius:50%;
@@ -62,7 +92,7 @@
     font-weight:700; font-size:22px; flex-shrink:0;
   }
   .instructor-card h3{font-size:16px; margin-bottom:2px;}
-  .instructor-card p{font-size:13px; color:var(--text-dim);}
+  .instructor-card p{font-size:13px; color:var(--green); font-weight:600;}
 
   /* Search / filter */
   .search-box{
@@ -113,9 +143,78 @@
     background:var(--primary); color:#fff; font-size:11px; font-weight:700;
     border-radius:6px; padding:2px 7px; flex-shrink:0; margin-top:2px;
   }
+  .class-row:nth-child(3n+2) .num{background:var(--accent);}
+  .class-row:nth-child(3n+3) .num{background:var(--green);}
 
-  section{margin:34px 0;}
-  .section-title{font-size:18px; font-weight:700; margin-bottom:6px;}
+  /* ====== জোন সিস্টেম: প্রতিটা সেকশনের নিজস্ব রঙ + হোভার করলে গ্লো ====== */
+  .zone-block{
+    border-radius:20px;
+    padding:22px 18px 26px;
+    margin:30px 0;
+    border:1px solid var(--zc, var(--border));
+    background:
+      radial-gradient(circle at top left, color-mix(in srgb, var(--zc, var(--primary)) 10%, transparent), transparent 60%),
+      var(--bg);
+    position:relative;
+  }
+  .zone-blue{ --zc:var(--zone-blue); }
+  .zone-orange{ --zc:var(--zone-orange); }
+  .zone-pink{ --zc:var(--zone-pink); }
+  .zone-teal{ --zc:var(--zone-teal); }
+  .zone-green{ --zc:var(--zone-green); }
+  .zone-violet{ --zc:var(--zone-violet); }
+
+  .zone-label{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12.5px; font-weight:700; letter-spacing:.3px;
+    color:var(--zc, var(--primary));
+    background:color-mix(in srgb, var(--zc, var(--primary)) 16%, transparent);
+    border:1px solid color-mix(in srgb, var(--zc, var(--primary)) 40%, transparent);
+    padding:5px 14px; border-radius:20px; margin-bottom:14px;
+  }
+
+  /* হোভার করলে জোনের রঙে গ্লো ভেসে ওঠে */
+  .zone-block .faq-item,
+  .zone-block .pay-card,
+  .zone-block .form-card,
+  .zone-block .instructor-card{
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .zone-block .faq-item:hover,
+  .zone-block .pay-card:hover,
+  .zone-block .form-card:hover,
+  .zone-block .instructor-card:hover{
+    transform:translateY(-3px);
+    border-color:var(--zc, var(--primary));
+    box-shadow:0 12px 28px -12px color-mix(in srgb, var(--zc, var(--primary)) 55%, transparent);
+  }
+  .zone-block .filter-chip:hover{
+    border-color:var(--zc, var(--primary));
+    color:var(--text);
+    box-shadow:0 0 0 1px color-mix(in srgb, var(--zc, var(--primary)) 50%, transparent);
+  }
+  .zone-block .filter-chip.active{
+    background:var(--zc, var(--primary));
+    border-color:var(--zc, var(--primary));
+  }
+  .zone-block .copy-btn:hover{
+    background:var(--zc, var(--primary)); border-color:var(--zc, var(--primary)); color:#0f1020;
+    box-shadow:0 6px 18px -6px color-mix(in srgb, var(--zc, var(--primary)) 60%, transparent);
+  }
+  .zone-block .field input:focus, .zone-block .field select:focus{
+    border-color:var(--zc, var(--primary));
+    box-shadow:0 0 0 3px color-mix(in srgb, var(--zc, var(--primary)) 25%, transparent);
+  }
+  .zone-block .search-box:focus-within{
+    border-color:var(--zc, var(--primary));
+    box-shadow:0 0 0 3px color-mix(in srgb, var(--zc, var(--primary)) 22%, transparent);
+  }
+  .zone-block .submit-btn{
+    background:linear-gradient(135deg, var(--zc, var(--primary)), var(--primary-dark));
+  }
+  .zone-block .pay-card{ border-color:color-mix(in srgb, var(--zc, var(--border)) 25%, var(--border)); }
+  .zone-block .faq-item{ border-color:color-mix(in srgb, var(--zc, var(--border)) 20%, var(--border)); }
+  .section-title{font-size:18px; font-weight:700; margin-bottom:6px; color:var(--zc, var(--text));}
   .section-sub{font-size:13px; color:var(--text-dim); margin-bottom:16px;}
 
   /* payment */
@@ -191,7 +290,8 @@
 </head>
 <body>
 
-<header>
+<header class="zone-violet">
+  <div class="zone-label" style="margin-bottom:10px;">🟣 পরিচিতি</div>
   <div class="logo-wrap">
     <!-- LOGO OPTION 1: circular monogram badge -->
     <svg width="86" height="86" viewBox="0 0 86 86" xmlns="http://www.w3.org/2000/svg">
@@ -210,8 +310,8 @@
   <h1>Tanjib BD</h1>
   <p class="tagline">ফেসবুক মনিটাইজেশন কোর্স — সম্পর্কিত সকল প্রশ্নোত্তর</p>
   <div class="meta-row">
-    <span>🗓️ প্রতিষ্ঠিত: ডিসেম্বর ২০২৫</span>
-    <span>🎓 ফেসবুক মনিটাইজেশন এক্সপার্ট</span>
+    <span class="badge-orange">🗓️ প্রতিষ্ঠিত: ডিসেম্বর ২০২৫</span>
+    <span class="badge-green">🎓 ফেসবুক মনিটাইজেশন এক্সপার্ট</span>
   </div>
 
   <div class="instructor-card">
@@ -225,6 +325,8 @@
 
 <div class="container">
 
+  <div class="zone-block zone-blue">
+  <div class="zone-label">🔵 সচরাচর জিজ্ঞাসিত প্রশ্ন</div>
   <div class="search-box">
     <span>🔍</span>
     <input id="searchInput" type="text" placeholder="যেকোনো প্রশ্ন লিখে খুঁজুন...">
@@ -345,9 +447,11 @@
 
   </div>
   <p id="noResult" style="display:none; text-align:center; color:var(--text-dim); padding:20px;">😔 কোনো প্রশ্ন পাওয়া গেলো না। আমাদের সরাসরি ইনবক্স করুন!</p>
+  </div><!-- /zone-blue -->
 
   <!-- PAYMENT SECTION -->
-  <section id="payment">
+  <section id="payment" class="zone-block zone-orange">
+    <div class="zone-label">🟠 পেমেন্ট</div>
     <div class="section-title">💳 এখনই ভর্তি হন</div>
     <div class="section-sub">পেমেন্ট করুন এবং তাৎক্ষণিক নিশ্চিতকরণ পান • কোর্স ফি: ১,৫০০ টাকা</div>
 
@@ -387,7 +491,8 @@
   </section>
 
   <!-- ORDER FORM -->
-  <section id="orderForm">
+  <section id="orderForm" class="zone-block zone-pink">
+    <div class="zone-label">🩷 ফর্ম জমা দিন</div>
     <div class="section-title">✅ পেমেন্ট তথ্য জমা দিন</div>
     <div class="form-card">
       <form id="paymentForm">
@@ -431,10 +536,11 @@
     </div>
   </section>
 
-  <footer>
+  <footer class="zone-block zone-teal" style="text-align:center;">
+    <div class="zone-label">🟢 যোগাযোগ</div><br>
     আরও কোনো প্রশ্ন আছে? সরাসরি যোগাযোগ করুন<br>
-    <a id="waContact" target="_blank">📞 WhatsApp করুন</a>
-    <p style="margin-top:14px;">© 2025 Tanjib BD — সর্বস্বত্ব সংরক্ষিত</p>
+    <a id="waContact" target="_blank" style="color:var(--zone-teal); font-weight:700;">📞 WhatsApp করুন</a>
+    <p style="margin-top:14px; font-size:12.5px; color:var(--text-dim);">© 2025 Tanjib BD — সর্বস্বত্ব সংরক্ষিত</p>
   </footer>
 
 </div>
