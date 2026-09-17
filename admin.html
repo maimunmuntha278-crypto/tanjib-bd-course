@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel — Tanjib BD</title>
+<style>
+  body{
+    font-family:'Segoe UI', 'Noto Sans Bengali', Arial, sans-serif;
+    background:#0f1020; color:#f3f3ff; min-height:100vh;
+    display:flex; align-items:center; justify-content:center; padding:20px;
+  }
+  .card{
+    background:#171933; border:1px solid #2a2c52; border-radius:16px;
+    padding:28px; max-width:380px; width:100%;
+  }
+  h2{margin-bottom:16px; text-align:center;}
+  input{
+    width:100%; padding:12px 14px; margin-bottom:12px; border-radius:10px;
+    background:#1f2140; border:1px solid #2a2c52; color:#fff; font-size:14px; outline:none;
+  }
+  button{
+    width:100%; padding:12px; border:none; border-radius:10px;
+    background:linear-gradient(135deg,#5b3df5,#3f22c9); color:#fff;
+    font-weight:700; cursor:pointer; font-size:14px;
+  }
+  .err{color:#f87171; font-size:13px; text-align:center; margin-top:10px; display:none;}
+  .panel{display:none;}
+  .link-btn{
+    display:block; background:#1f2140; border:1px solid #2a2c52; padding:14px;
+    border-radius:12px; margin-bottom:10px; color:#fff; text-decoration:none; font-size:14px;
+  }
+  .note{
+    font-size:12.5px; color:#b8b8d6; background:#1f2140; padding:12px;
+    border-radius:10px; margin-top:16px; line-height:1.6;
+  }
+</style>
+</head>
+<body>
+
+<div class="card" id="loginCard">
+  <h2>🔐 Admin Login — Tanjib BD</h2>
+  <input type="text" id="user" placeholder="Username">
+  <input type="password" id="pass" placeholder="Password">
+  <button onclick="tryLogin()">লগইন</button>
+  <p class="err" id="errMsg">❌ ভুল ইউজারনেম বা পাসওয়ার্ড</p>
+</div>
+
+<div class="card panel" id="adminPanel">
+  <h2>✅ Tanjib BD — Control Panel</h2>
+  <a class="link-btn" href="https://t.me/" target="_blank">📩 Telegram-এ নতুন অর্ডার দেখুন</a>
+  <a class="link-btn" href="index.html" target="_blank">🌐 সাইট প্রিভিউ দেখুন</a>
+  <a class="link-btn" href="https://app.netlify.com/" target="_blank">⚙️ Netlify Dashboard (নম্বর/সেটিং বদলাতে)</a>
+  <div class="note">
+    ⚠️ <b>গুরুত্বপূর্ণ নোট:</b> এটি একটি স্ট্যাটিক সাইট, তাই এই লগইন সুরক্ষা শুধুমাত্র সাধারণ ব্যবহারকারীদের ঠেকানোর জন্য —
+    এটি ব্যাংকিং লেভেল সিকিউর না, কারণ পাসওয়ার্ড ব্রাউজারের কোডেই থাকে।
+    আপনার আসল "কন্ট্রোল প্যানেল" হলো Telegram বট — প্রতিটি নতুন পেমেন্ট সরাসরি আপনার Telegram চ্যাটে আসবে।
+    সত্যিকারের সুরক্ষিত অ্যাডমিন প্যানেল চাইলে Netlify Identity বা একটি ডাটাবেজ (যেমন Firebase/Supabase) যুক্ত করা দরকার — বললে সেটাও বানিয়ে দিতে পারি।
+  </div>
+</div>
+
+<script>
+  // এই লগইন শুধু একটি হালকা গেট — বড় সিকিউরিটি না (উপরে নোট দেখুন)
+  const ADMIN_USER = "tanjib";
+  const ADMIN_PASS = "Tanjib$786";
+
+  function tryLogin(){
+    const u = document.getElementById('user').value;
+    const p = document.getElementById('pass').value;
+    if(u === ADMIN_USER && p === ADMIN_PASS){
+      document.getElementById('loginCard').style.display = 'none';
+      document.getElementById('adminPanel').style.display = 'block';
+    } else {
+      document.getElementById('errMsg').style.display = 'block';
+    }
+  }
+</script>
+
+</body>
+</html>
