@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
 <title>Tanjib BD — ফেসবুক মনিটাইজেশন কোর্স — সাধারণ প্রশ্নোত্তর</title>
 <style>
   :root{
@@ -27,11 +30,11 @@
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{
-    font-family:'Segoe UI', 'Noto Sans Bengali', Arial, sans-serif;
+    font-family:'Hind Siliguri','Noto Sans Bengali','Segoe UI', Arial, sans-serif;
     background:linear-gradient(160deg,#0f1020 0%,#181a35 100%);
     color:var(--text);
     line-height:1.6;
-    padding-bottom:60px;
+    padding-bottom:0;
   }
   a{color:inherit; text-decoration:none;}
   .container{max-width:760px; margin:0 auto; padding:0 18px;}
@@ -40,19 +43,12 @@
   header{
     text-align:center;
     padding:40px 18px 30px;
-    background:
-      linear-gradient(rgba(10,11,25,0.6), rgba(10,11,25,0.6)),
-      linear-gradient(120deg,
-        var(--zone-blue)   0%,  var(--zone-blue)   24%,
-        var(--zone-green)  24%, var(--zone-green)  48%,
-        var(--zone-violet) 48%, var(--zone-violet) 74%,
-        var(--zone-pink)   74%, var(--zone-pink)   100%
-      );
+    background:color-mix(in srgb, var(--zone-violet) 55%, var(--bg));
     border-bottom:1px solid color-mix(in srgb, var(--zone-violet) 30%, transparent);
   }
   .logo-wrap{display:flex; justify-content:center; margin-bottom:14px;}
   .tagline{color:var(--text-dim); font-size:14px; margin-top:6px;}
-  h1{font-size:22px; margin:14px 0 6px; font-weight:700;}
+  h1{font-size:26px; margin:14px 0 6px; font-weight:800; font-family:'Baloo Da 2','Hind Siliguri',sans-serif; letter-spacing:.3px;}
   .meta-row{
     display:flex; flex-wrap:wrap; justify-content:center; gap:10px;
     margin-top:14px; font-size:13px; color:var(--text-dim);
@@ -148,14 +144,14 @@
 
   /* ====== জোন সিস্টেম: প্রতিটা সেকশনের নিজস্ব রঙ + হোভার করলে গ্লো ====== */
   .zone-block{
-    border-radius:20px;
-    padding:22px 18px 26px;
-    margin:30px 0;
-    border:1px solid var(--zc, var(--border));
-    background:
-      radial-gradient(circle at top left, color-mix(in srgb, var(--zc, var(--primary)) 10%, transparent), transparent 60%),
-      var(--bg);
+    width:100%;
+    padding:36px 0 42px;
+    border-top:6px solid var(--zc, var(--primary));
+    background:color-mix(in srgb, var(--zc, var(--primary)) 42%, var(--bg));
     position:relative;
+  }
+  .zone-block > .container, .zone-block .container{
+    padding:0 18px;
   }
   .zone-blue{ --zc:var(--zone-blue); }
   .zone-orange{ --zc:var(--zone-orange); }
@@ -165,12 +161,40 @@
   .zone-violet{ --zc:var(--zone-violet); }
 
   .zone-label{
-    display:inline-flex; align-items:center; gap:8px;
-    font-size:12.5px; font-weight:700; letter-spacing:.3px;
-    color:var(--zc, var(--primary));
-    background:color-mix(in srgb, var(--zc, var(--primary)) 16%, transparent);
-    border:1px solid color-mix(in srgb, var(--zc, var(--primary)) 40%, transparent);
-    padding:5px 14px; border-radius:20px; margin-bottom:14px;
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    width:fit-content;
+    font-size:20px; font-weight:700; letter-spacing:.3px;
+    font-family:'Baloo Da 2','Hind Siliguri',sans-serif;
+    padding:13px 30px;
+    border-radius:50px;
+    margin:0 auto 26px;
+    box-shadow:0 10px 24px -8px rgba(0,0,0,0.5);
+  }
+  /* প্রতিটা জোনের নিজস্ব রঙ-কম্বিনেশন — গাঢ় ব্যাকগ্রাউন্ড + উজ্জ্বল লেখা, যাতে স্পষ্ট পড়া যায় */
+  .zone-violet .zone-label{
+    background:linear-gradient(135deg,#3b1f7a,#5b2fae);
+    color:#ffd166;
+    border:2px solid #ffd166;
+  }
+  .zone-blue .zone-label{
+    background:linear-gradient(135deg,#043a5e,#0c5a8c);
+    color:#8fe3ff;
+    border:2px solid #8fe3ff;
+  }
+  .zone-orange .zone-label{
+    background:linear-gradient(135deg,#7c2d12,#b45309);
+    color:#ffe4a3;
+    border:2px solid #ffe4a3;
+  }
+  .zone-pink .zone-label{
+    background:linear-gradient(135deg,#7a1350,#b3216f);
+    color:#ffd1eb;
+    border:2px solid #ffd1eb;
+  }
+  .zone-teal .zone-label{
+    background:linear-gradient(135deg,#083c39,#0f6b62);
+    color:#8ff5e6;
+    border:2px solid #8ff5e6;
   }
 
   /* হোভার করলে জোনের রঙে গ্লো ভেসে ওঠে */
@@ -197,9 +221,24 @@
     background:var(--zc, var(--primary));
     border-color:var(--zc, var(--primary));
   }
+  .zone-block .copy-btn{
+    border-color:var(--zc, var(--border));
+    color:var(--zc, var(--text));
+    background:color-mix(in srgb, var(--zc, var(--card-light)) 18%, var(--card-light));
+    font-weight:700;
+  }
   .zone-block .copy-btn:hover{
     background:var(--zc, var(--primary)); border-color:var(--zc, var(--primary)); color:#0f1020;
     box-shadow:0 6px 18px -6px color-mix(in srgb, var(--zc, var(--primary)) 60%, transparent);
+  }
+  .zone-block .submit-btn{
+    background:linear-gradient(135deg, var(--zc, var(--primary)), var(--primary-dark));
+    box-shadow:0 12px 28px -10px color-mix(in srgb, var(--zc, var(--primary)) 65%, transparent);
+    border:1px solid color-mix(in srgb, var(--zc, var(--primary)) 70%, white 10%);
+  }
+  .zone-block .filter-chip{
+    border-color:color-mix(in srgb, var(--zc, var(--border)) 35%, var(--border));
+    background:color-mix(in srgb, var(--zc, var(--card-light)) 12%, var(--card-light));
   }
   .zone-block .field input:focus, .zone-block .field select:focus{
     border-color:var(--zc, var(--primary));
@@ -209,12 +248,9 @@
     border-color:var(--zc, var(--primary));
     box-shadow:0 0 0 3px color-mix(in srgb, var(--zc, var(--primary)) 22%, transparent);
   }
-  .zone-block .submit-btn{
-    background:linear-gradient(135deg, var(--zc, var(--primary)), var(--primary-dark));
-  }
   .zone-block .pay-card{ border-color:color-mix(in srgb, var(--zc, var(--border)) 25%, var(--border)); }
   .zone-block .faq-item{ border-color:color-mix(in srgb, var(--zc, var(--border)) 20%, var(--border)); }
-  .section-title{font-size:18px; font-weight:700; margin-bottom:6px; color:var(--zc, var(--text));}
+  .section-title{font-size:19px; font-weight:700; margin-bottom:6px; color:var(--zc, var(--text)); font-family:'Baloo Da 2','Hind Siliguri',sans-serif;}
   .section-sub{font-size:13px; color:var(--text-dim); margin-bottom:16px;}
 
   /* payment */
@@ -291,7 +327,7 @@
 <body>
 
 <header class="zone-violet">
-  <div class="zone-label" style="margin-bottom:10px;">🟣 পরিচিতি</div>
+  <div class="zone-label">🟣 পরিচিতি</div>
   <div class="logo-wrap">
     <!-- LOGO OPTION 1: circular monogram badge -->
     <svg width="86" height="86" viewBox="0 0 86 86" xmlns="http://www.w3.org/2000/svg">
@@ -323,9 +359,9 @@
   </div>
 </header>
 
+<div class="zone-block zone-blue">
 <div class="container">
 
-  <div class="zone-block zone-blue">
   <div class="zone-label">🔵 সচরাচর জিজ্ঞাসিত প্রশ্ন</div>
   <div class="search-box">
     <span>🔍</span>
@@ -447,13 +483,17 @@
 
   </div>
   <p id="noResult" style="display:none; text-align:center; color:var(--text-dim); padding:20px;">😔 কোনো প্রশ্ন পাওয়া গেলো না। আমাদের সরাসরি ইনবক্স করুন!</p>
-  </div><!-- /zone-blue -->
 
-  <!-- PAYMENT SECTION -->
-  <section id="payment" class="zone-block zone-orange">
+</div><!-- /container -->
+</div><!-- /zone-blue -->
+
+<!-- PAYMENT SECTION -->
+<section id="payment" class="zone-block zone-orange">
+<div class="container">
     <div class="zone-label">🟠 পেমেন্ট</div>
     <div class="section-title">💳 এখনই ভর্তি হন</div>
     <div class="section-sub">পেমেন্ট করুন এবং তাৎক্ষণিক নিশ্চিতকরণ পান • কোর্স ফি: ১,৫০০ টাকা</div>
+
 
     <div class="pay-card">
       <div class="pay-icon pay-bkash">💗</div>
@@ -488,10 +528,12 @@
       <div class="step"><span class="n">৩</span><p>পেমেন্টের পর যে <b>ট্রানজেকশন ID</b> পাবেন সেটি নিচের ফর্মে দিন</p></div>
       <div class="step"><span class="n">৪</span><p>আমরা যাচাই করে আপনার WhatsApp-এ <b>গ্রুপ লিংক</b> পাঠাবো</p></div>
     </div>
+</div><!-- /container -->
   </section>
 
   <!-- ORDER FORM -->
   <section id="orderForm" class="zone-block zone-pink">
+  <div class="container">
     <div class="zone-label">🩷 ফর্ম জমা দিন</div>
     <div class="section-title">✅ পেমেন্ট তথ্য জমা দিন</div>
     <div class="form-card">
@@ -534,16 +576,18 @@
         <a class="wa" id="waConfirmLink" target="_blank">💬 WhatsApp করুন</a>
       </div>
     </div>
+  </div><!-- /container -->
   </section>
 
   <footer class="zone-block zone-teal" style="text-align:center;">
+  <div class="container">
     <div class="zone-label">🟢 যোগাযোগ</div><br>
     আরও কোনো প্রশ্ন আছে? সরাসরি যোগাযোগ করুন<br>
     <a id="waContact" target="_blank" style="color:var(--zone-teal); font-weight:700;">📞 WhatsApp করুন</a>
     <p style="margin-top:14px; font-size:12.5px; color:var(--text-dim);">© 2025 Tanjib BD — সর্বস্বত্ব সংরক্ষিত</p>
+  </div>
   </footer>
 
-</div>
 
 <script>
   // ---- CONFIG: এখানে আপনার নম্বর বদলাতে পারবেন ----
